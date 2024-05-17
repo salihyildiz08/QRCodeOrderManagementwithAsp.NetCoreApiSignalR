@@ -1,8 +1,10 @@
-﻿using EntityLayer.Concrete;
+﻿using AutoMapper;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLAyer.Abstract;
 using SignalR.DtoLayer.AboutDto;
+using SignalR.DtoLayer.CategoryDto;
 
 namespace SignalRApi.Controllers
 {
@@ -11,29 +13,30 @@ namespace SignalRApi.Controllers
     public class AboutController : ControllerBase
     {
         private readonly IAboutService _aboutService;
+        private readonly IMapper _mapper;
 
-        public AboutController(IAboutService aboutService)
+        public AboutController(IAboutService aboutService, IMapper mapper)
         {
             _aboutService = aboutService;
+            _mapper = mapper;       
         }
 
         [HttpGet]
         public IActionResult AboutList()
         {
-            var values=_aboutService.TGetListAll();
+           var values= _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetListAll());
             return Ok(values);
         }
 
         [HttpPost]
         public IActionResult CreateAbout(CreateAboutDto createAboutDto)
         {
-            About about = new About()
-            {
-                Description = createAboutDto.Description,
-                ImageUrl = createAboutDto.ImageUrl,
+
+            _aboutService.TAdd(new About(){
                 Title = createAboutDto.Title,
-            };
-            _aboutService.TAdd(about);
+                ImageUrl = createAboutDto.ImageUrl,
+                Description = createAboutDto.Description,
+            });
            
             return Ok("Successfull");
         }
@@ -49,14 +52,14 @@ namespace SignalRApi.Controllers
         [HttpPut]
         public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
-            About about = new About()
+          
+            _aboutService.TUpdate(new About()
             {
                 AboutID = updateAboutDto.AboutID,
-               Description=updateAboutDto.Description,
-               ImageUrl=updateAboutDto.ImageUrl,
-               Title=updateAboutDto.Title,
-            };
-            _aboutService.TUpdate(about);
+                Description = updateAboutDto.Description,
+                ImageUrl= updateAboutDto.ImageUrl,
+                Title= updateAboutDto.Title,
+            });
             return Ok();
         }
 

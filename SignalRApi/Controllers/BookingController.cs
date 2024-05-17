@@ -1,7 +1,9 @@
-﻿using EntityLayer.Concrete;
+﻿using AutoMapper;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLAyer.Abstract;
+using SignalR.DtoLayer.AboutDto;
 using SignalR.DtoLayer.BookingDto;
 
 namespace SignalRApi.Controllers
@@ -11,10 +13,13 @@ namespace SignalRApi.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
 
-        public BookingController(IBookingService bookingService)
+
+        public BookingController(IBookingService bookingService, IMapper mapper)
         {
             _bookingService = bookingService;
+            _mapper = mapper;
         }
 
       
@@ -22,23 +27,24 @@ namespace SignalRApi.Controllers
         [HttpGet]
         public IActionResult BookingList()
         {
-            var values = _bookingService.TGetListAll();
+            var values = _mapper.Map<List<ResultBookingDto>>(_bookingService.TGetListAll());
             return Ok(values);
         }
 
         [HttpPost]
         public IActionResult CreateBooking(CreateBookingDto createBookingDto)
         {
-            Booking booking = new Booking() { 
-                Mail=createBookingDto.Mail,
-                Date=createBookingDto.Date,
-                Name=createBookingDto.Name,
-                PersonCount=createBookingDto.PersonCount,
-                Phone=createBookingDto.Phone
-            };
+           
 
             
-                _bookingService.TAdd(booking);
+                _bookingService.TAdd(new Booking()
+                {
+                    Date = DateTime.Now,
+                    Mail=createBookingDto.Mail,
+                    Name = createBookingDto.Name,
+                    PersonCount=createBookingDto.PersonCount,
+                    Phone=createBookingDto.Phone,
+                });
            
             return Ok("Successfull");
         }
@@ -54,16 +60,13 @@ namespace SignalRApi.Controllers
         [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
         {
-            Booking booking = new Booking()
-            {
-                BookingID=updateBookingDto.BookingID,
+            _bookingService.TUpdate(new Booking(){
+                BookingID = updateBookingDto.BookingID,
                 Mail = updateBookingDto.Mail,
-                Date = updateBookingDto.Date,
-                Name = updateBookingDto.Name,
-                PersonCount = updateBookingDto.PersonCount,
-                Phone = updateBookingDto.Phone
-            };
-            _bookingService.TUpdate(booking);
+                Phone = updateBookingDto.Phone,
+                PersonCount=updateBookingDto.PersonCount,
+                Name=updateBookingDto.Name,
+            });
             return Ok();
         }
 
