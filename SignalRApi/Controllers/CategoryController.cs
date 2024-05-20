@@ -42,7 +42,7 @@ namespace SignalRApi.Controllers
             return Ok("Successfull");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             var value = _categoryService.TGetByID(id);
@@ -62,11 +62,13 @@ namespace SignalRApi.Controllers
             return Ok("Update Category");
         }
 
-        [HttpGet("GetCategory")]
+        [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
             var value = _categoryService.TGetByID(id);
             return Ok(value);
         }
+
+
     }
 }
