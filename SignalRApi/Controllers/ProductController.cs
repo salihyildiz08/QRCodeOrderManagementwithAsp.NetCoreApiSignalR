@@ -2,7 +2,9 @@
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SignalR.BusinessLAyer.Abstract;
+using SignalR.DataAccessLayer.Concrete;
 using SignalR.DtoLayer.ProductDto;
 
 namespace SignalRApi.Controllers
@@ -26,6 +28,22 @@ namespace SignalRApi.Controllers
         public IActionResult ProductList()
         {
             var values = _mapper.Map<List<ResultProductDto>>(_productService.TGetListAll());
+            return Ok(values);
+        }
+
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory() {
+            var context = new SignalRContext();
+            var values = context.Products.Include(x => x.Category).Select(y => new ResultProductWithCategoryDto
+            {
+                Description = y.Description,
+                ImageUrl = y.ImageUrl,
+                ProductID = y.ProductID,
+                Price = y.Price,
+                ProductName = y.ProductName,
+                ProductStatus = y.ProductStatus,
+                CategoryName = y.Category.CategoryName
+            }).ToList();
             return Ok(values);
         }
 
