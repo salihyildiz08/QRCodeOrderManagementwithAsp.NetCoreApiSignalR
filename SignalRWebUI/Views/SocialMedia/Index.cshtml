@@ -1,0 +1,56 @@
+﻿@model List<ResultSocialMediaDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">SocialMedia</h4>
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">SocialMedia List</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							<a href="/SocialMedia/CreateSocialMedia" class="btn btn-outline-primary">Add New SocialMedia</a>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Title</th>
+										<th>Url</th>
+										<th>Icon</th>
+										<th>Delete</th>
+										<th>Edit</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model)
+									{
+										count++;
+										<tr>
+											<td>@count</td>
+											<td>@item.Title</td>
+											<td>@item.Url</td>
+											<td>@item.Icon</td>
+											<td><a href="/SocialMedia/DeleteSocialMedia/@item.SocialMediaID" class="btn btn-outline-danger">Delete</a></td>
+											<td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaID" class="btn btn-outline-success">Edit</a></td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
