@@ -9,5 +9,6 @@ namespace SignalR.DataAccessLayer.Absract
 {
     public interface ICategoryDal : IGenericDal<Category>
     {
+        public int CategoryCount();
     }
 }
