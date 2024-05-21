@@ -3,6 +3,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLAyer.Abstract;
+using SignalR.DtoLayer.BookingDto;
 using SignalR.DtoLayer.FeatureDto;
 
 namespace SignalRApi.Controllers
@@ -46,8 +47,8 @@ namespace SignalRApi.Controllers
             return Ok("Successfull");
         }
 
-        [HttpDelete]
-        public IActionResult DeleteFeature(int id)
+		[HttpDelete("{id}")]
+		public IActionResult DeleteFeature(int id)
         {
             var value = _featureService.TGetByID(id);
             _featureService.TDelete(value);
@@ -70,8 +71,8 @@ namespace SignalRApi.Controllers
             return Ok("Update Feature");
         }
 
-        [HttpGet("GetFeature")]
-        public IActionResult GetFeature(int id)
+		 [HttpGet("{id}")]
+		public IActionResult GetFeature(int id)
         {
             var value = _featureService.TGetByID(id);
             return Ok(value);

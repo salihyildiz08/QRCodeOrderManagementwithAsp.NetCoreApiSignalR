@@ -1,0 +1,58 @@
+﻿@model List<ResultBookingDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Booking</h4>
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Booking List</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							<a href="/Booking/CreateBooking" class="btn btn-outline-primary">Add New Booking</a>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name Surname</th>
+										<th>Phone</th>
+										<th>Person Count</th>
+										<th>Status</th>
+										<th>Delete</th>
+										<th>Edit</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model)
+									{
+										count++;
+										<tr>
+											<td>@count</td>
+											<td>@item.Name</td>
+											<td>@item.Phone</td>
+											<td>@item.PersonCount</td>
+											<td></td>
+											<td><a href="/Booking/DeleteBooking/@item.BookingID" class="btn btn-outline-danger">Delete</a></td>
+											<td><a href="/Booking/UpdateBooking/@item.BookingID" class="btn btn-outline-success">Edit</a></td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

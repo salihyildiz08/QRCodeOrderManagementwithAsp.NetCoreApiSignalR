@@ -63,7 +63,7 @@ namespace SignalRApi.Controllers
             return Ok();
         }
 
-        [HttpGet("GetAbout")]
+        [HttpGet("{id}")]
         public IActionResult GetAbout(int id)
         {
             var value=_aboutService.TGetByID(id);

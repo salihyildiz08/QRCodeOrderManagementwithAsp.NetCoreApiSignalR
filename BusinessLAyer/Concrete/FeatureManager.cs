@@ -12,6 +12,12 @@ namespace SignalR.BusinessLAyer.Concrete
     public class FeatureManager : IFeatureService
     {
         private readonly IFeatureDal _featureDal;
+
+        public FeatureManager(IFeatureDal featureDal)
+        {
+            _featureDal = featureDal;
+        }
+
         public void TAdd(Feature entity)
         {
             _featureDal.Add(entity);    

@@ -13,10 +13,14 @@ namespace SignalR.BusinessLAyer.Concrete
     {
         private readonly IProductDal _productDal;
 
+        public ProductManager(IProductDal productDal)
+        {
+            _productDal = productDal;
+        }
 
         public void TAdd(Product entity)
         {
-            _productDal.Add(entity);    
+            _productDal.Add(entity);
         }
 
         public void TDelete(Product entity)

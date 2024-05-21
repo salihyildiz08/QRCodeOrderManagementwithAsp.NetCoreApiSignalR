@@ -1,0 +1,50 @@
+﻿@model CreateContactDto
+@{
+    ViewData["Title"] = "CreateContact";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Add New Contact</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Add New Contact</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Location">Location</label>
+                                <input type="text" class="form-control" asp-for="Location" placeholder="Location">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Mail">Mail</label>
+                                <input type="email" class="form-control" asp-for="Mail" placeholder="Mail">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Phone">Phone</label>
+                                <input type="text" class="form-control" asp-for="Phone" placeholder="Phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="FooterDescription">FooterDescription</label>
+                                <input type="text" class="form-control" asp-for="FooterDescription" placeholder="FooterDescription">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success">Add Contact</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
