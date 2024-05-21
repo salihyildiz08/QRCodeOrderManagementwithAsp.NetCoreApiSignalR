@@ -8,7 +8,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(opt=>
+builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", builder =>
     {
@@ -18,8 +18,7 @@ builder.Services.AddCors(opt=>
         .AllowCredentials();
     });
 });
-
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(); ;
 
 builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -74,6 +73,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<SignalRHub>("/singalrhub");
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
