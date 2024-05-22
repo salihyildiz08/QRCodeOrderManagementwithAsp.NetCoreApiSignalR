@@ -3,7 +3,6 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 <html>
 
@@ -11,13 +10,11 @@
 
 <body class="sub_page">
 
-   
+    @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
+    </div>
 
-    
-        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
-   
     @RenderBody()
-   
+
     <!-- end book section -->
     <!-- footer section -->
     @await Component.InvokeAsync("_UILayoutFooterPartialComponent")

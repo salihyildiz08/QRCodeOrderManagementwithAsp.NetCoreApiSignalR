@@ -1,0 +1,60 @@
+﻿@model List<ResultProductDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/SubPageLayout/Index.cshtml";
+}
+
+
+<section class="food_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Our Menu
+            </h2>
+        </div>
+
+        <ul class="filters_menu">
+            <li class="active" data-filter="*">All</li>
+            @await Component.InvokeAsync("_OurMenuCategoryListPartialComponent")
+        </ul>
+
+        <div class="filters-content">
+            <div class="row grid">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 all @item.CategoryName">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="@item.ImageUrl" alt="@item.ProductName">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @item.ProductName
+                                    </h5>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            ₺@item.Price
+                                        </h6>
+                                        <a href="">
+                                            <i class="fa fa-shopping-cart" style="color:white;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                View More
+            </a>
+        </div>
+    </div>
+</section>
+

@@ -39,7 +39,11 @@ namespace SignalRApi.Controllers
                 FooterDescription = createContactDto.FooterDescription,
                 Location = createContactDto.Location,
                 Mail=createContactDto.Mail,
-                Phone=createContactDto.Phone
+                Phone=createContactDto.Phone,
+                FooterTitle=createContactDto.FooterTitle,
+                OpenDays=createContactDto.OpenDays,
+                OpenDaysDescription=createContactDto.OpenDaysDescription,
+                OpenHours=createContactDto.OpenHours,
             });
 
             return Ok("Successfull");
@@ -59,10 +63,14 @@ namespace SignalRApi.Controllers
             _contactService.TUpdate(new Contact()
             {
                ContactID = updateContactDto.ContactID,
-               Phone = updateContactDto.Phone,
-               Mail = updateContactDto.Mail,
-               Location = updateContactDto.Location,
-               FooterDescription=updateContactDto.FooterDescription
+                FooterDescription = updateContactDto.FooterDescription,
+                Location = updateContactDto.Location,
+                Mail = updateContactDto.Mail,
+                Phone = updateContactDto.Phone,
+                FooterTitle = updateContactDto.FooterTitle,
+                OpenDays = updateContactDto.OpenDays,
+                OpenDaysDescription = updateContactDto.OpenDaysDescription,
+                OpenHours = updateContactDto.OpenHours,
             });
             return Ok("Update Contact");
         }
