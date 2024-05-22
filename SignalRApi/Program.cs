@@ -56,6 +56,8 @@ builder.Services.AddScoped<IOrderDetailsDal, EfOrderDetailDal>();
 builder.Services.AddScoped<IOrderService, OrderManager>();
 builder.Services.AddScoped<IOrderDal, EfOrderDal>();
 
+builder.Services.AddScoped<IMoneyCaseService, MoneyCaseManager>();
+builder.Services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>();
 
 
 builder.Services.AddControllers();
