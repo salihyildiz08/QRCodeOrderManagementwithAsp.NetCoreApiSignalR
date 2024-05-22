@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadPartialComponent")
+
+<body>
+
+   
+
+    
+        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
+    @RenderBody()
+   
+    <!-- end book section -->
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutFooterPartialComponent")
+    <!-- footer section -->
+    <!-- jQery -->
+    @await Component.InvokeAsync("_UILayoutScriptPartialComponent")
+    <!-- End Google Map -->
+
+</body>
+
+</html>
