@@ -1,0 +1,6 @@
+﻿@model List<ResultCategoryDto>
+
+@foreach (var item in Model)
+{
+    <li data-filter=".@item.CategoryName">@item.CategoryName</li>
+}

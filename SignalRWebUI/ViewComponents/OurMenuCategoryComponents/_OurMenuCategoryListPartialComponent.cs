@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.ProductDtos;
+using SignalRWebUI.Dtos.CategoryDtos;
 
-namespace SignalRWebUI.ViewComponents.DefaultComponents
+namespace SignalRWebUI.ViewComponents.OurMenuCategoryComponents
 {
-    public class _DefaultOurMenuPartialComponent : ViewComponent
+    public class _OurMenuCategoryListPartialComponent : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _DefaultOurMenuPartialComponent(IHttpClientFactory httpClientFactory)
+        public _OurMenuCategoryListPartialComponent(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,11 +17,11 @@ namespace SignalRWebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7140/api/Product/ProductListWithCategory");
+            var responseMessage = await client.GetAsync("https://localhost:7140/api/Category");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                 return View(values);
             }
             return View();
