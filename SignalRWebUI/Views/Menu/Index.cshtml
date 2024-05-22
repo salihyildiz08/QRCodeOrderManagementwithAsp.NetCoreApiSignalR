@@ -39,7 +39,7 @@
                                         <h6>
                                             ₺@item.Price
                                         </h6>
-                                        <a href="">
+                                        <a href="#" onclick="showproductid(@item.ProductID)">
                                             <i class="fa fa-shopping-cart" style="color:white;"></i>
                                         </a>
                                     </div>
@@ -58,3 +58,20 @@
     </div>
 </section>
 
+<script>
+        function showproductid(value) {
+            var id = value;
+            $.ajax({
+                type: 'POST',
+                data: { item: id },
+                contentType: 'json',
+                success: function () {
+                swal("Seçilen Ürün ID:" + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                }
+            });
+        };
+
+
+    </script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
