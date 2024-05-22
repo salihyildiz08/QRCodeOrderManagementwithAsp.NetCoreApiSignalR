@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SignalR.EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace EntityLayer.Concrete
 
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }
