@@ -59,19 +59,21 @@
 </section>
 
 <script>
-        function showproductid(value) {
-            var id = value;
-            $.ajax({
-                type: 'POST',
-                data: { item: id },
-                contentType: 'json',
-                success: function () {
+    function showproductid(value) {
+        var id = value;
+        $.ajax({
+            type: 'POST',
+            url: "/Menu/AddBasket/" + id,
+            data: { item: id },
+            contentType: 'json',
+            success: function () {
                 swal("Seçilen Ürün ID:" + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
-                }
-            });
-        };
+            }
+        });
+    };
 
 
-    </script>
+
+</script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
