@@ -51,7 +51,7 @@ namespace SignalRApi.Controllers
         {
             using var context=new SignalRContext();
 
-            _basketService.TAdd(new Basket()
+            _basketService.TUpdateOrCreateBasketCount(new Basket()
             {
                Count=1,
                MenuTableID=1,
