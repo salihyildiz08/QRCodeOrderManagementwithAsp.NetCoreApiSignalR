@@ -12,20 +12,22 @@ namespace SignalRApi.Hubs
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
         private readonly IBookingService _bookingService;
+        private readonly INotificationService _notificationService;
 
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService)
-        {
-            _categoryService = categoryService;
-            _productService = productService;
-            _orderService = orderService;
-            _moneyCaseService = moneyCaseService;
-            _menuTableService = menuTableService;
-            _bookingService = bookingService;
-        }
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService)
+		{
+			_categoryService = categoryService;
+			_productService = productService;
+			_orderService = orderService;
+			_moneyCaseService = moneyCaseService;
+			_menuTableService = menuTableService;
+			_bookingService = bookingService;
+			_notificationService = notificationService;
+		}
 
 
 
-        public async Task SendStatistic()
+		public async Task SendStatistic()
         {
             var value = _categoryService.TCategoryCount();
             await Clients.All.SendAsync("ReceiveCategoryCount", value);
@@ -98,5 +100,14 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReceiveBookingList", values);
         }
 
-    }
+		public async Task SendNotification()
+		{
+			var values = _notificationService.TNotificationCountByStatusFalse();
+			await Clients.All.SendAsync("ReceiveNotificationCountByStatusFalse", values);
+
+			var values1 = _notificationService.TGetAllNotificationByFalse();
+			await Clients.All.SendAsync("ReceiveGetAllNotificationByFalse", values1);
+		}
+
+	}
 }
