@@ -42,6 +42,13 @@
                                 <input type="text" class="form-control" asp-for="Description" id="Description">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label asp-for="Status" class="control-label">Durum</label>
+                            <select asp-for="Status" class="form-control">
+                                <option value="true">Aktif</option>
+                                <option value="false">Pasif</option>
+                            </select>
+                        </div>
                         <div class="card-action">
                             <button class="btn btn-primary">İndirimli Ürünü Güncelle</button>
                         </div>

@@ -36,6 +36,13 @@
                                 <label for="ImageUrl">ImageUrl</label>
                                 <input type="text" class="form-control" asp-for="ImageUrl" placeholder="ImageUrl">
                             </div>
+                            <div class="form-group">
+                                <label for="Status">Status</label>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="true" >Aktif</option>
+                                    <option value="false">Pasif</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="card-action">
                             <button class="btn btn-success">Add Discount</button>
