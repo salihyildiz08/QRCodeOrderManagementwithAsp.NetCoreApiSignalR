@@ -49,7 +49,10 @@ namespace SignalRApi.Controllers
         [HttpPost]
         public IActionResult CreateBasket(CreateBasketDto createBasketDto)
         {
+
+
             using var context=new SignalRContext();
+            var menuTable = context.MenuTables.FirstOrDefault(x=>x.Status==true);
 
             _basketService.TUpdateOrCreateBasketCount(new Basket()
             {
