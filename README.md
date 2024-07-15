@@ -3,24 +3,45 @@ In this project, I developed a comprehensive real-time application using ASP.NET
 To facilitate reservation processes, we integrated email notifications for users. With SignalR, we implemented real-time features such as instant notifications, messaging, and shopping cart updates. Our coding practices adhered closely to architectural principles and SOLID guidelines, ensuring clean code throughout the development process.
 
 Technologies Used:
+
 ASP.NET Core 6.0
+
 ASP.NET Core API
+
 SignalR
+
 Swagger
+
 DTOs
+
 N-Tier Architecture
+
 MSSQL
+
 Related Tables
+
 HTML, CSS, Bootstrap
+
 JavaScript
+
 AJAX
+
 Entity Framework - LINQ
+
 Alerts
+
 Shopping Basket
+
 Reservation Processes
+
 Real-Time Applications
+
 Real-Time Messaging
+
 Real-Time Statistics
+
 Real-Time Notifications
+
 Email Sending Operations
+
 And much more.
